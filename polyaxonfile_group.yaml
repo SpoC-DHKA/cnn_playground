@@ -1,0 +1,28 @@
+version: 1
+
+kind: group
+
+hptuning:
+  concurrency: 60
+  random_search:
+    n_experiments: 400
+    
+  matrix:
+    lr:
+      logspace: 0.01:0.1:5
+    dropout:
+      values: [0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
+    epochs:
+      range: 100:1000:20
+    batchSize:
+      range: 100:340:8
+
+build:
+  image: gw000/keras
+  build_steps:
+    - pip install polyaxon-client
+    - pip install pandas
+    - pip install scikit-learn
+    
+run:
+  cmd: python model.py --learning_rate={{ lr }} --batch_size={{ batchSize }} --dropout={{ dropout }} --num_epochs={{ epochs }}

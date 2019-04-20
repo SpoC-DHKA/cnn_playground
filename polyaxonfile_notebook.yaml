@@ -1,0 +1,10 @@
+---
+version: 1
+
+kind: notebook
+
+build:
+  image: gw000/keras
+  build_steps:
+    - pip install jupyter
+    - pip install scikit-learn

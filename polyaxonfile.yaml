@@ -1,0 +1,13 @@
+version: 1
+
+kind: experiment
+
+build:
+  image: gw000/keras
+  build_steps:
+    - pip install polyaxon-client
+    - pip install pandas
+    - pip install scikit-learn
+    
+run:
+  cmd: python model.py
